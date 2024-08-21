@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OCR Results</title>
+</head>
+<body>
+    <h1>OCR Results</h1>
+    <ul>
+        {% for result in results %}
+            <li>{{ result['Filename'] }}: {{ result['Extracted Number'] }}</li>
+            <!-- <li>{{ result['Filename'] }}: {{ result['Extracted Number'] }} | List: {{result['Number List']}}</li> -->
+        {% endfor %}
+    </ul>
+    {% if excel_file %}
+    <a href="{{ url_for('download_file', filename=excel_file) }}">
+        <button>Download Results as Excel</button>
+    </a>
+    {% else %}
+        <p>No results found.</p>
+    {% endif %}
+    <br><br>
+    <a href="{{ url_for('index') }}">Upload more PDFs</a>
+</body>
+</html>
